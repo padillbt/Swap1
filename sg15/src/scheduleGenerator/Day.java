@@ -20,16 +20,16 @@ public class Day implements Serializable{
 	
 	 // SWAP 1, TEAM 6
 	 // QUALITY CHANGES
-	private JScrollPane dayScrollPane;
-    private JButton dayAddJob;
-    private JButton dayDeleteJob;
+	private JScrollPane dayScrollPane = new JScrollPane();
+    private JButton dayAddJob = new JButton();
+    private JButton dayDeleteJob = new JButton();
     @SuppressWarnings("rawtypes")
-	private JList dayJobList;
-    private JTextField dayJobName;
+	private JList dayJobList = new JList();
+    private JTextField dayJobName = new JTextField();
     private JLabel dayLabel;
-    private JPanel dayTab;
+    private JPanel dayTab = new JPanel();
     private DefaultListModel model;
-    private JCheckBox dayCheck;
+    private JCheckBox dayCheck = new JCheckBox();
 
 	
 	/**

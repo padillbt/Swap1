@@ -140,6 +140,8 @@ public class Config extends javax.swing.JFrame {
 //        this.sundayTab = new javax.swing.JPanel();
 //    }
 
+ // SWAP 1, TEAM 6
+    // QUALITY CHANGES
     private void initComponents() {
     	
     	this.sunday = new Day("Sunday");
@@ -261,6 +263,8 @@ public class Config extends javax.swing.JFrame {
     }// </editor-fold>
 
     
+ // SWAP 1, TEAM 6
+    // QUALITY CHANGES
     /**
 	 * @param evt  
 	 */
@@ -288,7 +292,7 @@ public class Config extends javax.swing.JFrame {
     	ArrayList<Object> day = new ArrayList<Object>();
 		List<Object> jobs = Arrays.asList(this.models[index].toArray());
 		day.addAll(jobs);
-    	return new Day(name ,day);
+    	return new Day(name, day);
     }
     
     /**
