@@ -49,6 +49,12 @@ public class Day implements Serializable{
 		this.initComponent(name);
 	}
 	
+	public Day(String name)
+	{
+		this.dayOfWeek = name;
+		this.initComponent(this.dayOfWeek);
+	}
+	
 	/**
 	 * Add one jobName.
 	 *
