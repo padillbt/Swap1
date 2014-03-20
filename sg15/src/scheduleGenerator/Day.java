@@ -26,9 +26,9 @@ public class Day implements Serializable{
     @SuppressWarnings("rawtypes")
 	private JList dayJobList = new JList();
     private JTextField dayJobName = new JTextField();
-    private JLabel dayLabel;
+    private JLabel dayLabel = new JLabel();
     private JPanel dayTab = new JPanel();
-    private DefaultListModel model;
+    private DefaultListModel model = new DefaultListModel();
     private JCheckBox dayCheck = new JCheckBox();
 
 	
@@ -49,6 +49,8 @@ public class Day implements Serializable{
 		this.initComponent(name);
 	}
 	
+	// SWAP 1, TEAM 6
+	// QUALITY CHANGES
 	public Day(String name)
 	{
 		this.dayOfWeek = name;
@@ -62,6 +64,15 @@ public class Day implements Serializable{
 	 */
 	public void addJob(String jobName) {
 		this.jobs.add(jobName);
+	}
+	
+	// SWAP 1, TEAM 6
+	// QUALITY CHANGES
+	public void addJobs(ArrayList<Object> jobs){
+		for(Object i:jobs)
+		{
+			this.jobs.add((String)i);
+		}
 	}
 	
 	/**
@@ -115,17 +126,24 @@ public class Day implements Serializable{
         });
 	}
 	
-	public void addJob(){
+	// SWAP 1, TEAM 6
+	// QUALITY CHANGES
+	public void add(){
 		if(!this.dayJobName.getText().isEmpty()) {
             this.model.addElement(this.dayJobName.getText());
+            this.addJob(this.dayJobName.getText());
+            System.out.println(this.jobs.size());
             this.dayJobList.setModel(this.model);
             this.dayJobName.setText("");
         }
 	}
-	
-	public void DeleteJob(){
-		while(dayJobList.isSelectionEmpty()) {
-            int n = dayJobList.getSelectedIndex();
+
+	// SWAP 1, TEAM 6
+	// QUALITY CHANGES
+	public void delete(){
+		while(!dayJobList.isSelectionEmpty()) {
+           int n = dayJobList.getSelectedIndex();
+           this.jobs.remove(n);
            this.model.remove(n);
         }
 	}
@@ -136,7 +154,7 @@ public class Day implements Serializable{
     @SuppressWarnings("unchecked")
 	public void dayCheckActionPerformed() {                                            
 
-            this.model = new DefaultListModel<Object>();
+            this.model = new DefaultListModel();
             this.dayJobList.setModel(model);
             this.dayScrollPane.setViewportView(this.dayJobList);
 
@@ -190,16 +208,28 @@ public class Day implements Serializable{
         
     }
     
+	// SWAP 1, TEAM 6
+	// QUALITY CHANGES
     public boolean isSelected(){
     	return this.dayCheck.isSelected();
     }
     
+	// SWAP 1, TEAM 6
+	// QUALITY CHANGES
     public JCheckBox getCheckBox(){
     	return this.dayCheck;
     }
     
+	// SWAP 1, TEAM 6
+	// QUALITY CHANGES
     public JPanel getDayTab(){
     	return this.dayTab;
+    }
+    
+	// SWAP 1, TEAM 6
+	// QUALITY CHANGES
+    public DefaultListModel getModel(){
+    	return this.model;
     }
     
 }

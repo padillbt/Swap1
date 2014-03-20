@@ -3,6 +3,8 @@ package scheduleGenerator;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// SWAP 1, TEAM 6
+// QUALITY CHANGES
 public class DeleteListener implements ActionListener {
 
 	private Day day;
@@ -13,7 +15,7 @@ public class DeleteListener implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		this.day.DeleteJob();
+		this.day.delete();
 
 	}
 

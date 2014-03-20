@@ -290,11 +290,16 @@ public class Config extends javax.swing.JFrame {
     // QUALITY CHANGES
     private Day initDay(String name, int index){
     	ArrayList<Object> day = new ArrayList<Object>();
-		List<Object> jobs = Arrays.asList(this.models[index].toArray());
+    	Day day1 = new Day(name, day);
+		List<Object> jobs = Arrays.asList(day1.getModel().toArray());
 		day.addAll(jobs);
-    	return new Day(name, day);
+		day1.addJobs(day);
+    	return day1;
     }
     
+    
+	// SWAP 1, TEAM 6
+	// QUALITY CHANGES
     /**
 	 * @param evt  
 	 */
@@ -302,36 +307,37 @@ public class Config extends javax.swing.JFrame {
     	ArrayList<Day> days = new ArrayList<Day>();
     	if(this.sunday.isSelected())
         {
-        	days.add(this.initDay("Sunday", 0));
+        	days.add(this.sunday);
         }
     	if(this.monday.isSelected())
         {
-    		days.add(this.initDay("Monday", 1));
+    		days.add(this.monday);
         }
     	if(this.tuesday.isSelected())
         {
-    		days.add(this.initDay("Tuesday", 2));
+    		days.add(this.tuesday);
         }
     	if(this.wednesday.isSelected())
         {
-    		days.add(this.initDay("Wednesday", 3));
+    		days.add(this.wednesday);
         }
     	if(this.thursday.isSelected())
         {
-    		days.add(this.initDay("Thursday", 4));
+    		days.add(this.thursday);
         }
     	if(this.friday.isSelected())
         {
-    		days.add(this.initDay("Friday", 5));
+    		days.add(this.friday);
         }
     	if(this.saturday.isSelected())
         {
-    		days.add(this.initDay("Saturday", 6));
+    		days.add(this.saturday);
         }
     	if(days.size() > 0) {
     		boolean hasJobs = true;
     		int i = 0;
     		while(hasJobs && i<days.size()) {
+    			System.out.print(days.get(i).getJobs().size());
     			if(days.get(i).getJobs().size() == 0) {
     				hasJobs = false;
     			}
