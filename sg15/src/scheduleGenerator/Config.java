@@ -337,7 +337,6 @@ public class Config extends javax.swing.JFrame {
     		boolean hasJobs = true;
     		int i = 0;
     		while(hasJobs && i<days.size()) {
-    			System.out.print(days.get(i).getJobs().size());
     			if(days.get(i).getJobs().size() == 0) {
     				hasJobs = false;
     			}

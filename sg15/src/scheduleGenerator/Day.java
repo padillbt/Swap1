@@ -132,7 +132,6 @@ public class Day implements Serializable{
 		if(!this.dayJobName.getText().isEmpty()) {
             this.model.addElement(this.dayJobName.getText());
             this.addJob(this.dayJobName.getText());
-            System.out.println(this.jobs.size());
             this.dayJobList.setModel(this.model);
             this.dayJobName.setText("");
         }
