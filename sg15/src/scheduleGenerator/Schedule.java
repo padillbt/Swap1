@@ -63,11 +63,14 @@ public class Schedule extends Thread implements Serializable {
 		return this.workers;
 	}
 
+	// QUALITY CHANGES
+	// SWAP 1, TEAM 6
 	private void generateIndices() {
 		for (int i = 0; i < this.workers.size(); i++) {
 			for (Day day : this.workers.get(i).getDays()) {
-				int numDay = this.numForName(day.getNameOfDay());
-				this.workerIndices.get(numDay).add(this.workers.get(i));
+				// int numDay = this.numForName(day.getNameOfDay());
+				this.workerIndices.get(day.getDayNum())
+						.add(this.workers.get(i));
 			}
 		}
 	}
@@ -75,9 +78,7 @@ public class Schedule extends Thread implements Serializable {
 	/**
 	 * Calculates another month of schedule based on workers availability.
 	 * 
-	 * QUALITY CHANGES
-	 * 
-	 * Swap 1, Team 6
+	 * QUALITY CHANGES Swap 1, Team 6
 	 * 
 	 * Explanation of refactoring:
 	 * 
@@ -97,8 +98,11 @@ public class Schedule extends Thread implements Serializable {
 		int initialSize = this.schedule.size();
 
 		// If the schedule has already been generated
-		if (this.schedule.size() > 0) {
-			previouslyGeneratedScheduleSetup();
+		// if (this.schedule.size() > 0) {
+		// resetCalendar();
+		// }
+		if (!this.schedule.isEmpty()) {
+			resetCalendarMonth();
 		}
 
 		// These variables are for the HTML table generator
@@ -112,8 +116,9 @@ public class Schedule extends Thread implements Serializable {
 		while (currentMonth == this.cal.get(Calendar.MONTH)) {
 
 			for (Day day : this.days) {
-				if (this.cal.get(Calendar.DAY_OF_WEEK) == this.numForName(day
-						.getNameOfDay())) {
+				// if (this.cal.get(Calendar.DAY_OF_WEEK) == this.numForName(day
+				// .getNameOfDay())) {
+				if (this.cal.get(Calendar.DAY_OF_WEEK) == day.getDayNum()) {
 					daysInMonth++;
 					int numOfNewJobs = assignWorkersAndJobs(day);
 					numOfJobs.add(numOfNewJobs);
@@ -134,31 +139,35 @@ public class Schedule extends Thread implements Serializable {
 	}
 
 	/**
-	 * QUALITY CHANGES
-	 * 
-	 * Swap 1, Team 6
+	 * QUALITY CHANGES Swap 1, Team 6
 	 * 
 	 * This was added as part of the refactoring of the calculateNextMonth()
 	 * long method.
 	 * 
+	 * Additionally, this code was simplified by just creating the calendar at
+	 * the desired date instead of this going through calculations to reset to
+	 * the beginning of the month.
+	 * 
 	 */
-	private void previouslyGeneratedScheduleSetup() {
+	private void resetCalendarMonth() {
 		String lastDateMade = this.schedule.lastKey();
 		String[] parts = lastDateMade.split("/");
+		// int year = Integer.parseInt(parts[0]);
+		// int month = Integer.parseInt(parts[1]) - 1;
+		// int day = Integer.parseInt(parts[2]);
+		// this.cal = new GregorianCalendar(year, month, day);
+		// int tempNum = this.cal.get(Calendar.MONTH);
+		// while (tempNum == this.cal.get(Calendar.MONTH)) {
+		// this.cal.add(Calendar.DATE, 1);
+		// }
 		int year = Integer.parseInt(parts[0]);
-		int month = Integer.parseInt(parts[1]) - 1;
-		int day = Integer.parseInt(parts[2]);
-		this.cal = new GregorianCalendar(year, month, day);
-		int tempNum = this.cal.get(Calendar.MONTH);
-		while (tempNum == this.cal.get(Calendar.MONTH)) {
-			this.cal.add(Calendar.DATE, 1);
-		}
+		int month = Integer.parseInt(parts[1]);
+		this.cal = new GregorianCalendar(year, month, 1);
+
 	}
 
 	/**
-	 * QUALITY CHANGES
-	 * 
-	 * Swap 1, Team 6
+	 * QUALITY CHANGES Swap 1, Team 6
 	 * 
 	 * This was added as part of refactoring calculateNextMonth(), which was a
 	 * long method.
@@ -176,31 +185,31 @@ public class Schedule extends Thread implements Serializable {
 
 			ArrayList<Worker> workersForJob = new ArrayList<Worker>();
 
-			for (Worker worker : this.workerIndices.get(this.numForName(day
-					.getNameOfDay()))) {
+			// for (Worker worker : this.workerIndices.get(this.numForName(day
+			// .getNameOfDay()))) {
+			for (Worker worker : this.workerIndices.get(day.getDayNum())) {
 				Day workerDay = worker.getDayWithName(day.getNameOfDay());
 				if (workerDay.getJobs().contains(job)
 						&& !workersWorking.contains(worker.getName())) {
 					workersForJob.add(worker);
 				}
 			}
-			jobsWithWorker = createDailySchedule(workersForJob, job, workersWorking, day);
+			jobsWithWorker = createDailySchedule(workersForJob, job,
+					workersWorking, day);
 			if (this.workerForEveryJob = false) {
 				break;
 			}
-			
+
 		}
-		
+
 		String date = createDateString();
 		this.schedule.put(date, jobsWithWorker);
 
 		return jobsInOrder.size();
 	}
-	
+
 	/**
-	 * QUALITY CHANGES
-	 * 
-	 * Swap 1, Team 6
+	 * QUALITY CHANGES Swap 1, Team 6
 	 * 
 	 * This pulls the if/else code out of the AssignWorkersAndJobs() method.
 	 * 
@@ -210,17 +219,17 @@ public class Schedule extends Thread implements Serializable {
 	 * @param day
 	 * @return a tree map with jobs assigned to workers
 	 */
-	private TreeMap<String, Worker> createDailySchedule(ArrayList<Worker> workersForJob,
-			String job, ArrayList<String> workersWorking, Day day) {
-		
+	private TreeMap<String, Worker> createDailySchedule(
+			ArrayList<Worker> workersForJob, String job,
+			ArrayList<String> workersWorking, Day day) {
+
 		TreeMap<String, Worker> jobsWithWorker = new TreeMap<String, Worker>();
-		
+
 		if (workersForJob.size() > 0) {
 			Worker workerForJob = workersForJob.get(new Random()
 					.nextInt(workersForJob.size()));
 			for (Worker w : workersForJob) {
-				if (w.numWorkedForJob(job) < workerForJob
-						.numWorkedForJob(job)) {
+				if (w.numWorkedForJob(job) < workerForJob.numWorkedForJob(job)) {
 					workerForJob = w;
 				}
 			}
@@ -228,22 +237,20 @@ public class Schedule extends Thread implements Serializable {
 			workersWorking.add(workerForJob.getName());
 			workerForJob.addWorkedJob(job);
 		} else {
-			jobsWithWorker.put(job, new Worker("Empty",
-					new ArrayList<Day>()));
-			JOptionPane.showMessageDialog(new JFrame(),
+			jobsWithWorker.put(job, new Worker("Empty", new ArrayList<Day>()));
+			JOptionPane.showMessageDialog(
+					new JFrame(),
 					"No workers are able to work as a(n) " + job + " on "
 							+ day.getNameOfDay());
 			this.workerForEveryJob = false;
 		}
-		
+
 		return jobsWithWorker;
-		
+
 	}
 
 	/**
-	 * QUALITY CHANGES
-	 * 
-	 * Swap 1, Team 6
+	 * QUALITY CHANGES Swap 1, Team 6
 	 * 
 	 * This was added as part of the refactoring of the calculateNextMonth()
 	 * long method. The multi-line calculation to create the date string was
@@ -257,25 +264,31 @@ public class Schedule extends Thread implements Serializable {
 				+ String.format("%02d", this.cal.get(Calendar.DAY_OF_MONTH));
 	}
 
-	private int numForName(String nameOfDay) {
-		int dayNum = 0;
-		if (nameOfDay.equals("Sunday")) {
-			dayNum = 1;
-		} else if (nameOfDay.equals("Monday")) {
-			dayNum = 2;
-		} else if (nameOfDay.equals("Tuesday")) {
-			dayNum = 3;
-		} else if (nameOfDay.equals("Wednesday")) {
-			dayNum = 4;
-		} else if (nameOfDay.equals("Thursday")) {
-			dayNum = 5;
-		} else if (nameOfDay.equals("Friday")) {
-			dayNum = 6;
-		} else if (nameOfDay.equals("Saturday")) {
-			dayNum = 7;
-		}
-		return dayNum;
-	}
+	/**
+	 * QUALITY CHANGES Swap 1, Team 6
+	 * 
+	 * This method was extracted to the Day class, because it only cares about
+	 * day objects.
+	 */
+	// private int numForName(String nameOfDay) {
+	// int dayNum = 0;
+	// if (nameOfDay.equals("Sunday")) {
+	// dayNum = 1;
+	// } else if (nameOfDay.equals("Monday")) {
+	// dayNum = 2;
+	// } else if (nameOfDay.equals("Tuesday")) {
+	// dayNum = 3;
+	// } else if (nameOfDay.equals("Wednesday")) {
+	// dayNum = 4;
+	// } else if (nameOfDay.equals("Thursday")) {
+	// dayNum = 5;
+	// } else if (nameOfDay.equals("Friday")) {
+	// dayNum = 6;
+	// } else if (nameOfDay.equals("Saturday")) {
+	// dayNum = 7;
+	// }
+	// return dayNum;
+	// }
 
 	// /**
 	// * Returns the month/day/year of next date with the name of day.

@@ -102,6 +102,26 @@ public class Day implements Serializable{
 		return this.dayOfWeek;
 	}
 	
+	public int getDayNum() {
+		int dayNum = 0;
+		if (this.dayOfWeek.equals("Sunday")) {
+			dayNum = 1;
+		} else if (this.dayOfWeek.equals("Monday")) {
+			dayNum = 2;
+		} else if (this.dayOfWeek.equals("Tuesday")) {
+			dayNum = 3;
+		} else if (this.dayOfWeek.equals("Wednesday")) {
+			dayNum = 4;
+		} else if (this.dayOfWeek.equals("Thursday")) {
+			dayNum = 5;
+		} else if (this.dayOfWeek.equals("Friday")) {
+			dayNum = 6;
+		} else if (this.dayOfWeek.equals("Saturday")) {
+			dayNum = 7;
+		}
+		return dayNum;
+	}
+	
 	 // SWAP 1, TEAM 6
 	 // QUALITY CHANGES
 	public void initModel(DefaultListModel model){
