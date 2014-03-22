@@ -29,16 +29,6 @@ public class Config extends javax.swing.JFrame {
     private HashMap<String, JCheckBox> daysChecked = new HashMap<String, JCheckBox>();
     private HashMap<String, JList> daysList = new HashMap<String, JList>();
     
-//Changes Made
-    
-@SuppressWarnings("unchecked")
-public void dayClicked(int index, ArrayList<String> jobs){
-	for(String job: jobs) {
-		this.models[index].addElement(job);
-		this.sundayJobList.setModel(this.models[index]);
-	}
-}
-    
 public int getDayNum(Day day) {
 	int dayNum = 0;
 	if (day.getNameOfDay().equals("Sunday")) {
