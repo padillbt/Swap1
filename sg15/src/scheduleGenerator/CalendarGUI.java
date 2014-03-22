@@ -47,8 +47,13 @@ public class CalendarGUI extends javax.swing.JFrame {
 		this.fillTableForThisMonth();
 	}
 
-	//SWAP 1 TEAM 6
-	//QUALITY CHANGES
+	/**
+     * QUALITY CHANGES Swap 1, Team 6
+     * 
+     * Rather than using a case statement to determine the name of the day, we used pre-built library to obtain the information.
+     * This helps us in the future because it enables internationalization if we were to pass in a Locale variable.
+     * 
+     */
 	private void setTitleMonth(int n, int year) {
 		
 		String monthString = new DateFormatSymbols().getMonths()[n-1];
@@ -306,8 +311,13 @@ public class CalendarGUI extends javax.swing.JFrame {
 
 	}
 
-	//SWAP 1 TEAM 6
-	//QUALITY CHANGES
+	/**
+     * QUALITY CHANGES Swap 1, Team 6
+     * 
+     * Rather than using a case statement to determine the name of the day, we used pre-built library to obtain the information.
+     * This helps us in the future because it enables internationalization if we were to pass in a Locale variable.
+     * 
+     */
 	private String getNameforNum(int n) {
 		return new DateFormatSymbols().getWeekdays()[n];
 	}

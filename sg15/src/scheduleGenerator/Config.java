@@ -5,6 +5,7 @@
 package scheduleGenerator;
 
 import java.awt.Dimension;
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -31,8 +32,15 @@ public class Config extends javax.swing.JFrame {
     @SuppressWarnings("rawtypes")
 	private DefaultListModel[] models;
     
-  //SWAP 1 TEAM 6
-  //QUALITY CHANGES
+    /**
+	 * QUALITY CHANGES Swap 1, Team 6
+	 * 
+	 * This was added as part of the refactoring for the Config Constructor. This allows us to remove duplication of 
+	 * Initialization of the Swing Objects for the various days. This also enables refactoring for each method that applies the 
+	 * same procedure to the different Swing Components of each day (i.e. get rid of case statements and methods that 
+	 * vary based on the name of the day only)
+	 * 
+	 */
     private HashMap<String, JCheckBox> daysChecked = new HashMap<String, JCheckBox>();
     private HashMap<String, JList> daysList = new HashMap<String, JList>();
     private HashMap<String, JScrollPane> daysScrollPane = new HashMap<String, JScrollPane>();
@@ -46,6 +54,7 @@ public class Config extends javax.swing.JFrame {
     
     
 public int getDayNum(Day day) {
+	
 	int dayNum = 0;
 	if (day.getNameOfDay().equals("Sunday")) {
 		dayNum = 0;
@@ -65,8 +74,15 @@ public int getDayNum(Day day) {
 	return dayNum;
 }
 
-//SWAP 1 TEAM 6
-//QUALITY CHANGES
+/**
+ * QUALITY CHANGES Swap 1, Team 6
+ * 
+ * Using the various HashMaps initialized we removed duplicate code from determining which days have been selected.This allowed us to 
+ * get rid of the case statements and perform the entire function in a single for loop. For future use this will make any changes to the 
+ * constructor affecting the individual days quicker and easier to locate. Now we only apply changes once rather than once for each day.
+ * 
+ */
+	
     /**
      * Used to edit days.
      *
@@ -98,8 +114,13 @@ public int getDayNum(Day day) {
         initComponents();
     }
     
-  //SWAP 1 TEAM 6
-  //QUALITY CHANGES
+    /**
+     * QUALITY CHANGES Swap 1, Team 6
+     * 
+     * Using the various HashMaps initialized we removed duplicate code for initialization. If any new day or parameter for a day is 
+     * created, it is simple make make that change among all the days.
+     * 
+     */
     @SuppressWarnings("rawtypes")
 	private void initDyn() {
     	
@@ -1006,9 +1027,6 @@ public int getDayNum(Day day) {
             }
         });
     }
-    
-  //SWAP 1 TEAM 6
-  //QUALITY CHANGES
     
     private javax.swing.JTabbedPane dayTabs;
     private javax.swing.JLabel jLabel1;
