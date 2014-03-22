@@ -12,6 +12,7 @@ import java.util.TreeMap;
 
 import javax.swing.JMenuItem;
 import javax.swing.table.DefaultTableModel;
+import java.text.DateFormatSymbols;
 
 /**
  * 
@@ -46,58 +47,16 @@ public class CalendarGUI extends javax.swing.JFrame {
 		this.fillTableForThisMonth();
 	}
 
+	//SWAP 1 TEAM 6
+	//QUALITY CHANGES
 	private void setTitleMonth(int n, int year) {
-		switch (n) {
-		case (1):
-			this.monthTitle.setText("January " + year);
-			this.monthName = "January " + year;
-			break;
-		case (2):
-			this.monthTitle.setText("February " + year);
-			this.monthName = "February " + year;
-			break;
-		case (3):
-			this.monthTitle.setText("March " + year);
-			this.monthName = "March " + year;
-			break;
-		case (4):
-			this.monthTitle.setText("April " + year);
-			this.monthName = "April " + year;
-			break;
-		case (5):
-			this.monthTitle.setText("May " + year);
-			this.monthName = "May " + year;
-			break;
-		case (6):
-			this.monthTitle.setText("June " + year);
-			this.monthName = "June " + year;
-			break;
-		case (7):
-			this.monthTitle.setText("July " + year);
-			this.monthName = "July " + year;
-			break;
-		case (8):
-			this.monthTitle.setText("August " + year);
-			this.monthName = "August " + year;
-			break;
-		case (9):
-			this.monthTitle.setText("September " + year);
-			this.monthName = "September " + year;
-			break;
-		case (10):
-			this.monthTitle.setText("October " + year);
-			this.monthName = "October " + year;
-			break;
-		case (11):
-			this.monthTitle.setText("November " + year);
-			this.monthName = "November " + year;
-			break;
-		case (12):
-			this.monthTitle.setText("December " + year);
-			this.monthName = "December " + year;
-			break;
-
-		}
+		
+		String monthString = new DateFormatSymbols().getMonths()[n-1];
+		String dateString = monthString + " " + year;
+		
+		this.monthTitle.setText(dateString);
+		this.monthName = dateString;
+		
 	}
 
 	/**
@@ -347,24 +306,10 @@ public class CalendarGUI extends javax.swing.JFrame {
 
 	}
 
+	//SWAP 1 TEAM 6
+	//QUALITY CHANGES
 	private String getNameforNum(int n) {
-		switch (n) {
-		case (1):
-			return "Sunday";
-		case (2):
-			return "Monday";
-		case (3):
-			return "Tuesday";
-		case (4):
-			return "Wednesday";
-		case (5):
-			return "Thursday";
-		case (6):
-			return "Friday";
-		case (7):
-			return "Saturday";
-		}
-		return null;
+		return new DateFormatSymbols().getWeekdays()[n];
 	}
 
 	private void initComponents() {
