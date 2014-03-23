@@ -410,7 +410,7 @@ public class Config extends javax.swing.JFrame {
 			if (this.firstSelection) {
 				stretch();
 			}
-			this.models[0] = new DefaultListModel<Object>();
+			this.models[0] = new DefaultListModel();
 			this.daysList.get("Sunday").setModel(this.models[0]);
 			this.daysScrollPane.get("Sunday").setViewportView(
 					this.daysList.get("Sunday"));
@@ -579,7 +579,7 @@ public class Config extends javax.swing.JFrame {
 			if (this.firstSelection) {
 				stretch();
 			}
-			this.models[1] = new DefaultListModel<Object>();
+			this.models[1] = new DefaultListModel();
 			this.daysList.get("Monday").setModel(this.models[1]);
 			this.daysScrollPane.get("Monday").setViewportView(
 					this.daysList.get("Monday"));
@@ -748,7 +748,7 @@ public class Config extends javax.swing.JFrame {
 			if (this.firstSelection) {
 				stretch();
 			}
-			this.models[2] = new DefaultListModel<Object>();
+			this.models[2] = new DefaultListModel();
 			this.daysList.get("Tuesday").setModel(this.models[2]);
 			this.daysScrollPane.get("Tuesday").setViewportView(
 					this.daysList.get("Tuesday"));
@@ -916,7 +916,7 @@ public class Config extends javax.swing.JFrame {
 			if (this.firstSelection) {
 				stretch();
 			}
-			this.models[3] = new DefaultListModel<Object>();
+			this.models[3] = new DefaultListModel();
 			this.daysList.get("Wednesday").setModel(this.models[3]);
 			this.daysScrollPane.get("Wednesday").setViewportView(
 					this.daysList.get("Wednesday"));
@@ -1086,7 +1086,7 @@ public class Config extends javax.swing.JFrame {
 			if (this.firstSelection) {
 				stretch();
 			}
-			this.models[4] = new DefaultListModel<Object>();
+			this.models[4] = new DefaultListModel();
 			this.daysList.get("Thursday").setModel(this.models[4]);
 			this.daysScrollPane.get("Thursday").setViewportView(
 					this.daysList.get("Thursday"));
@@ -1255,7 +1255,7 @@ public class Config extends javax.swing.JFrame {
 			if (this.firstSelection) {
 				stretch();
 			}
-			this.models[5] = new DefaultListModel<Object>();
+			this.models[5] = new DefaultListModel();
 			this.daysList.get("Friday").setModel(this.models[5]);
 			this.daysScrollPane.get("Friday").setViewportView(
 					this.daysList.get("Friday"));
@@ -1424,7 +1424,7 @@ public class Config extends javax.swing.JFrame {
 			if (this.firstSelection) {
 				stretch();
 			}
-			this.models[6] = new DefaultListModel<Object>();
+			this.models[6] = new DefaultListModel();
 			this.daysList.get("Saturday").setModel(this.models[6]);
 			this.daysScrollPane.get("Saturday").setViewportView(
 					this.daysList.get("Saturday"));
