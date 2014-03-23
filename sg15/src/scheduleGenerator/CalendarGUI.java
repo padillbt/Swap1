@@ -48,20 +48,22 @@ public class CalendarGUI extends javax.swing.JFrame {
 	}
 
 	/**
-     * QUALITY CHANGES Swap 1, Team 6
-     * 
-     * Rather than using a case statement to determine the name of the day, we used pre-built library to obtain the information.
-     * This helps us in the future because it enables internationalization if we were to pass in a Locale variable.
-     * 
-     */
+	 * QUALITY CHANGES Swap 1, Team 6
+	 * 
+	 * Rather than using a case statement to determine the name of the day, we
+	 * used pre-built library to obtain the information. This helps us in the
+	 * future because it enables internationalization if we were to pass in a
+	 * Locale variable.
+	 * 
+	 */
 	private void setTitleMonth(int n, int year) {
-		
-		String monthString = new DateFormatSymbols().getMonths()[n-1];
+
+		String monthString = new DateFormatSymbols().getMonths()[n - 1];
 		String dateString = monthString + " " + year;
-		
+
 		this.monthTitle.setText(dateString);
 		this.monthName = dateString;
-		
+
 	}
 
 	/**
@@ -91,7 +93,7 @@ public class CalendarGUI extends javax.swing.JFrame {
 			if (currentKey.equals("")) {
 				Thread t = new Thread(this.schedule);
 				t.start();
-				//this.schedule.calculateNextMonth();
+				// this.schedule.calculateNextMonth();
 			}
 		}
 
@@ -167,7 +169,7 @@ public class CalendarGUI extends javax.swing.JFrame {
 			if (currentKey.equals("")) {
 				Thread t = new Thread(this.schedule);
 				t.start();
-				//this.schedule.calculateNextMonth();
+				// this.schedule.calculateNextMonth();
 			}
 		}
 
@@ -260,7 +262,7 @@ public class CalendarGUI extends javax.swing.JFrame {
 				if (currentKey.equals("")) {
 					Thread t = new Thread(this.schedule);
 					t.start();
-					//this.schedule.calculateNextMonth();
+					// this.schedule.calculateNextMonth();
 				}
 			}
 
@@ -312,12 +314,14 @@ public class CalendarGUI extends javax.swing.JFrame {
 	}
 
 	/**
-     * QUALITY CHANGES Swap 1, Team 6
-     * 
-     * Rather than using a case statement to determine the name of the day, we used pre-built library to obtain the information.
-     * This helps us in the future because it enables internationalization if we were to pass in a Locale variable.
-     * 
-     */
+	 * QUALITY CHANGES Swap 1, Team 6
+	 * 
+	 * Rather than using a case statement to determine the name of the day, we
+	 * used pre-built library to obtain the information. This helps us in the
+	 * future because it enables internationalization if we were to pass in a
+	 * Locale variable.
+	 * 
+	 */
 	private String getNameforNum(int n) {
 		return new DateFormatSymbols().getWeekdays()[n];
 	}
@@ -372,19 +376,20 @@ public class CalendarGUI extends javax.swing.JFrame {
 						"Thursday (10/26/12)" }));
 		this.scheduleTable.setColumnSelectionAllowed(true);
 		this.scheduleTable.getTableHeader().setReorderingAllowed(false);
-		
-		for(Worker i:this.schedule.getWorkers())
-		{
+
+		for (Worker i : this.schedule.getWorkers()) {
 			final Worker input = i;
-			this.popup.add(new JMenuItem(input.getName())).addActionListener(new java.awt.event.ActionListener() {
-				@Override
-				public void actionPerformed(java.awt.event.ActionEvent evt) {
-					editCell(input);
-				}
-			});
+			this.popup.add(new JMenuItem(input.getName())).addActionListener(
+					new java.awt.event.ActionListener() {
+						@Override
+						public void actionPerformed(
+								java.awt.event.ActionEvent evt) {
+							editCell(input);
+						}
+					});
 		}
 		this.scheduleTable.setComponentPopupMenu(this.popup);
-		
+
 		this.jScrollPane1.setViewportView(this.scheduleTable);
 
 		this.fileMenu.setText("File");
@@ -411,7 +416,7 @@ public class CalendarGUI extends javax.swing.JFrame {
 				undoChangesActionPerformed(evt);
 			}
 		});
-		//this.fileMenu.add(this.undoChanges);
+		// this.fileMenu.add(this.undoChanges);
 
 		this.menuBar.add(this.fileMenu);
 
@@ -597,14 +602,14 @@ public class CalendarGUI extends javax.swing.JFrame {
 		for (String i : dutyRows) {
 			textOutput += "\n" + i;
 		}
-		
+
 		char[] letterOutput = textOutput.toCharArray();
 
 		try {
 			readout.createNewFile();
 
 			FileWriter outFile = new FileWriter(readout);
-			for(char i:letterOutput)
+			for (char i : letterOutput)
 				outFile.write(i);
 			outFile.close();
 		} catch (IOException exception) {
@@ -625,22 +630,21 @@ public class CalendarGUI extends javax.swing.JFrame {
 	private void undoChangesActionPerformed(java.awt.event.ActionEvent evt) {
 		// removed
 	}
-	
-	private void editCell(Worker input)
-	{
+
+	private void editCell(Worker input) {
 		int i = this.scheduleTable.getSelectedRow();
 		int j = this.scheduleTable.getSelectedColumn();
-		if(this.scheduleTable.getValueAt(i,j) != null)
-		{
+		if (this.scheduleTable.getValueAt(i, j) != null) {
 			System.out.println(this.scheduleTable.getColumnName(j));
-			String job = this.scheduleTable.getValueAt(i,j).toString().split(":")[0];
+			String job = this.scheduleTable.getValueAt(i, j).toString()
+					.split(":")[0];
 			String date = this.scheduleTable.getColumnName(j).split(" ")[1];
-			date = date.substring(1,date.length()-1);
+			date = date.substring(1, date.length() - 1);
 			String[] dateNums = date.split("/");
 			date = dateNums[2] + "/" + dateNums[0] + "/" + dateNums[1];
 			System.out.println(date);
-			this.scheduleMap.get(date).put(job,input);
-			this.scheduleTable.setValueAt(job + ": " + input.getName(),i,j);
+			this.scheduleMap.get(date).put(job, input);
+			this.scheduleTable.setValueAt(job + ": " + input.getName(), i, j);
 		}
 	}
 

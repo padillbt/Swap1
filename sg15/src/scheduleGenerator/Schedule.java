@@ -98,9 +98,6 @@ public class Schedule extends Thread implements Serializable {
 		int initialSize = this.schedule.size();
 
 		// If the schedule has already been generated
-		// if (this.schedule.size() > 0) {
-		// resetCalendar();
-		// }
 		if (!this.schedule.isEmpty()) {
 			resetCalendarMonth();
 		}
@@ -118,8 +115,6 @@ public class Schedule extends Thread implements Serializable {
 			for (Day day : this.days) {
 				if (this.cal.get(Calendar.DAY_OF_WEEK) == this.numForName(day
 						.getNameOfDay())) {
-					// if (this.cal.get(Calendar.DAY_OF_WEEK) ==
-					// day.getDayNum()) {
 					daysInMonth++;
 					int numOfNewJobs = assignWorkersAndJobs(day);
 					numOfJobs.add(numOfNewJobs);
@@ -153,18 +148,9 @@ public class Schedule extends Thread implements Serializable {
 	private void resetCalendarMonth() {
 		String lastDateMade = this.schedule.lastKey();
 		String[] parts = lastDateMade.split("/");
-		// int year = Integer.parseInt(parts[0]);
-		// int month = Integer.parseInt(parts[1]) - 1;
-		// int day = Integer.parseInt(parts[2]);
-		// this.cal = new GregorianCalendar(year, month, day);
-		// int tempNum = this.cal.get(Calendar.MONTH);
-		// while (tempNum == this.cal.get(Calendar.MONTH)) {
-		// this.cal.add(Calendar.DATE, 1);
-		// }
 		int year = Integer.parseInt(parts[0]);
 		int month = Integer.parseInt(parts[1]);
 		this.cal = new GregorianCalendar(year, month, 1);
-
 	}
 
 	/**
@@ -183,9 +169,7 @@ public class Schedule extends Thread implements Serializable {
 		ArrayList<String> jobsInOrder = day.getJobs();
 
 		for (String job : jobsInOrder) {
-
 			ArrayList<Worker> workersForJob = new ArrayList<Worker>();
-
 			for (Worker worker : this.workerIndices.get(this.numForName(day
 					.getNameOfDay()))) {
 				// for (Worker worker : this.workerIndices.get(day.getDayNum()))
@@ -201,12 +185,10 @@ public class Schedule extends Thread implements Serializable {
 			if (this.workerForEveryJob = false) {
 				break;
 			}
-
 		}
 
 		String date = createDateString();
 		this.schedule.put(date, jobsWithWorker);
-
 		return jobsInOrder.size();
 	}
 
@@ -266,6 +248,14 @@ public class Schedule extends Thread implements Serializable {
 				+ String.format("%02d", this.cal.get(Calendar.DAY_OF_MONTH));
 	}
 
+	/**
+	 * QUALITY CHANGES SWAP 1, TEAM 6
+	 * 
+	 * SMELL: Switch Statements - an assortment of if cases shows that the
+	 * abstraction was not thoroughly thought out. Refactoring this would allow
+	 * a cleaner use of this method and less of a need to for other switch
+	 * statements.
+	 */
 	private int numForName(String nameOfDay) {
 		int dayNum = 0;
 		if (nameOfDay.equals("Sunday")) {
