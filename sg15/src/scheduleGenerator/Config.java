@@ -401,6 +401,26 @@ public class Config extends javax.swing.JFrame {
 	}// </editor-fold>
 
 	/**
+	 * SWAP 1, TEAM 6
+	 * 
+	 * sundayCheckActionPerformed through saturdayCheckActionPerformed
+	 * 
+	 * SMELL: Duplicate Code - the code is duplicated for every day of the week. The only difference between each function is the 
+	 * global variable used throughout the function. This can be refactored by fully utilizing the HashMaps for each component. This
+	 * would allow a single function to perform the functionality for each global variable in a for loop.
+	 */
+	
+	/**
+	 * SWAP 1, TEAM 6
+	 * 
+	 * sundayCheckActionPerformed through saturdayCheckActionPerformed
+	 * 
+	 * SMELL: Shotgun Surgery - the code, due to the large duplication, any change made to these functions must be done for each day
+	 * of the week, even if the change is minor.  When following the refactoring idea above for the previous smell, this smell would also
+	 * be fixed, as merging them all into a single function would allow to only need to make each change once.
+	 */
+	
+	/**
 	 * @param evt
 	 */
 	@SuppressWarnings("unchecked")
