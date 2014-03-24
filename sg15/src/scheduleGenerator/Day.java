@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Day is used to store jobs for a given day.
  * 
- * QUALITY CHANGES SWAP 1, TEAM 6
+ * SWAP 1, TEAM 6
  * 
  * SMELL: Data class - This class is nothing but getters and setters. There is
  * zero actual functionality in this class. Refactoring this would allow

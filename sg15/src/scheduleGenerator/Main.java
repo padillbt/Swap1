@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * This class handles the interaction of one frame to another as well as
  * handling initialization.
  * 
- * QUALITY CHANGES SWAP 1, TEAM 6
+ * SWAP 1, TEAM 6
  * 
  * SMELL: Large Class - Main handles many different things such as toggling all
  * the different GUI frames. Refactoring here would lower coupling and make this
@@ -78,7 +78,7 @@ public class Main {
 	/**
 	 * Changes visible of calendar.
 	 * 
-	 * QUALITY CHANGES SWAP 1, TEAM 6
+	 * SWAP 1, TEAM 6
 	 * 
 	 * SMELL: Middle Man - this method is only about changing an aspect of
 	 * another object. Refactoring this would remove an unnecessary layer of

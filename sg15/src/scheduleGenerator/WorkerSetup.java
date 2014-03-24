@@ -77,7 +77,7 @@ public class WorkerSetup extends javax.swing.JFrame {
 	}
 
 	/**
-	 * QUALITY CHANGES SWAP 1, TEAM 6
+	 * SWAP 1, TEAM 6
 	 * 
 	 * SMELL: long method - this method is crazy long with a lot of hard to
 	 * follow GUI components. Refactoring it would enable new functionality that
@@ -367,7 +367,7 @@ public class WorkerSetup extends javax.swing.JFrame {
 	}
 
 	/**
-	 * QUALITY CHANGES SWAP 1, TEAM 6
+	 * SWAP 1, TEAM 6
 	 * 
 	 * SMELL: Feature Envy - in the if(allGood) section, a lot of Main's
 	 * functions are called. Refactoring this would enable easier changes made

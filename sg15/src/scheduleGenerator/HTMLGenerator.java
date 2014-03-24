@@ -61,7 +61,7 @@ public class HTMLGenerator {
 	 * Creates the output for a table based on number of jobs for a day and
 	 * number of days.
 	 * 
-	 * QUALITY CHANGES SWAP 1, TEAM 6
+	 * SWAP 1, TEAM 6
 	 * 
 	 * SMELL: Temporary Variable - tempTable is an unnecessary temporary
 	 * variable. Refactoring this would allow easier reading of this function.
